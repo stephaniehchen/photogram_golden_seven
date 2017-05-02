@@ -33,19 +33,22 @@ class PhotosController < ApplicationController
   end
 
   def update_row
-    the_id = params[:id]
-    url = params[:url]
-    caption = params[:caption]
-    update_photo = Photo.find(the_id)
-    update_photo.source = url
-    update_photo.caption = caption
+    @the_id = params[:id]
+    @url = params[:source]
+    @caption = params[:caption]
+    update_photo = Photo.find(@the_id)
+    update_photo.source = @url
+    update_photo.caption = @caption
     update_photo.save
     #render("photos/create_row.html.erb")
-    redirect_to("/photos/update_photo.id")
+    redirect_to("/photos/"+@the_id)
     #render("photos/update_row.html.erb")
   end
 
   def destroy_row
-    render("photos/destroy_row.html.erb")
+    destruction = Photo.find(params[:id])
+    destruction.destroy
+    redirect_to("/photos")
   end
+  
 end
