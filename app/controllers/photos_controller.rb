@@ -5,7 +5,7 @@ class PhotosController < ApplicationController
   end
 
   def create_row
-    url = params[:url]
+    url = params[:source]
     caption = params[:caption]
     new_photo = Photo.new
     new_photo.source = url
@@ -50,5 +50,5 @@ class PhotosController < ApplicationController
     destruction.destroy
     redirect_to("/photos")
   end
-  
+
 end
